@@ -1,8 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[1]:
-
 
 #data shuffel& cross validation:
 import numpy as np
@@ -10,21 +5,9 @@ import pandas as pd
 from random import seed
 from random import random
 
-
-# In[2]:
-
-
-datadf=pd.read_csv('datadf_midterm.csv')  
-
-
-# In[3]:
-
+datadf=pd.read_csv('datadf_midterm_01.csv') 
 
 print(datadf.head())
-
-
-# In[56]:
-
 
 #shuffel the data set:
 datadf_0=datadf.sample(frac=1).reset_index(drop=True)
@@ -32,10 +15,6 @@ datadf_0=datadf[['X1','X2','X3','X4','X5','class']]
 print(datadf_0.head())
 
 
-# In[59]:
-
-
-#for K- fold cross validation:
 k=5
 rate=1/k
 length=len(datadf_0)
@@ -62,9 +41,9 @@ for z in range(k):
     p_c1=float(len(class1_df))/float(len(train_df))
     p_c2=float(len(class2_df))/(float(len(train_df)))
     p_c3=float(len(class3_df))/(float(len(train_df)))
-    print('p(c1)=',p_c1)
-    print('p(c2)=',p_c2)
-    print('p(c3)=',p_c3)
+    #print('p(c1)=',p_c1)
+    #print('p(c2)=',p_c2)
+    #print('p(c3)=',p_c3)
 
     def find_pdc_df(theclass):
         from collections import Counter
@@ -94,7 +73,7 @@ for z in range(k):
     td_list=test_df.drop(['class'],axis=1).values.tolist()
     #print(td_list)
     #open the economic gain date:
-    eg=pd.read_csv(r"C:\Users\xinyu\Desktop\STUDY\CIS9650\ec.csv")
+    eg=pd.read_csv(r"ec.csv")
     #print(eg)
     e_1=float(eg.loc[0,'a_c1'])
     e_2=float(eg.loc[1,'a_c2'])
@@ -161,58 +140,4 @@ for z in range(k):
         for j in range(len(eg_list[i])):
             a=matrix_per[i][j]*float(eg_list[i][j])+a
     print('in fold',str(z),'ecnomic gain is:',a)
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[6]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
 
